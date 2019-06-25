@@ -10,4 +10,8 @@ public class SiteTest {
     public void debugger() {
         site.getHomePage().goToHomePage();
     }
+    @Test
+    public void InputEmail(String email){
+        //site.getHomePage().
+    }
 }

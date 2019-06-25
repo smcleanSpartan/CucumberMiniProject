@@ -17,4 +17,5 @@ public class HomePage {
     public void goToHomePage(){
         driver.navigate().to(homePageUrl);
     }
+
 }
