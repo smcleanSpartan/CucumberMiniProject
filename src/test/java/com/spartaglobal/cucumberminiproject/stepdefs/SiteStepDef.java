@@ -35,6 +35,13 @@ public class SiteStepDef {
         site.getAccountPage().goToAccountPage();
     }
 
+    @And("I am not logged in")
+    public void i_am_not_logged_in() {
+        if (!site.getAccountPage().returnSignInStatus().equals("Sign in")){
+            site.getAccountPage().clickSignOut();
+        }
+    }
+
     @And("Email address is registered")
     public void email_address_is_registered() {
         email="amacdougall@spartaglobal.com";
@@ -100,7 +107,6 @@ public class SiteStepDef {
     public void email_address_is_too_short() {
         email="a";
     }
-
 
 
     //Adding an item on the homepage to basket
