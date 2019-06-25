@@ -55,4 +55,12 @@ public class SiteTest {
         site.getPrintedDressPaged().AddToCart();
         Assert.assertEquals("3", site.getPrintedDressPaged().getQuanityInCart());
     }
+
+    @Test
+    public void addToBasketFromCategoryPage() throws InterruptedException {
+        site.getDressesCategoryPage().goToDressesCategoryPage();
+        site.getDressesCategoryPage().clickAddToCart();
+        Assert.assertTrue(site.getPrintedDressPaged().getSuccessText().contains("Product successfully added to your shopping cart"));
+
+    }
 }
