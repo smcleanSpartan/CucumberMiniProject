@@ -20,6 +20,17 @@ public class SiteStepDef {
     }
 
 
+    @Given("I am signed in")
+    public void i_am_signed_in(){
+        automationPracticeSite.getAccountPage().goToAccountPage();
+        email="amacdougall@spartaglobal.com";
+        password="Sparta2019";
+        automationPracticeSite.getAccountPage().enterSignInEmail(email);
+        automationPracticeSite.getAccountPage().enterSignInPassword(password);
+        automationPracticeSite.getAccountPage().clickSignInBTN();
+        automationPracticeSite.getHomePage().goToHomePage();
+    }
+
     @Given("I am on the homepage")
     public void i_am_on_the_homepage() {
         automationPracticeSite.getHomePage().goToHomePage();
@@ -38,6 +49,13 @@ public class SiteStepDef {
     @Given("I am on the accounts page")
     public void i_am_on_the_accounts_page() {
         automationPracticeSite.getAccountPage().goToAccountPage();
+    }
+
+    @And("I am not logged in")
+    public void i_am_not_logged_in() {
+        if (!automationPracticeSite.getAccountPage().returnSignInStatus().equals("Sign in")){
+            automationPracticeSite.getAccountPage().clickSignOut();
+        }
     }
 
     @And("Email address is registered")
@@ -165,7 +183,7 @@ public class SiteStepDef {
         automationPracticeSite.getPrintedDressPaged().goToCheckout();
     }
 
-    @Given("I am on the Summary page")
+    @And("I am on the Summary page")
     public void i_am_on_the_Summary_page() throws InterruptedException {
 //input one of Rahul's tests to get ot this point
         automationPracticeSite.getHomePage().goToHomePage();
@@ -176,26 +194,6 @@ public class SiteStepDef {
         automationPracticeSite.getSummaryPage().clickProceedToCheckoutButton();
         // wrong username and password
 
-
-    }
-    @And("I am signed in")
-    public void i_am_signed_in() throws InterruptedException {
-        //sign in here
-        /*automationPracticeSite.getSummaryPage().clickProceedToCheckoutButton();
-        i_click_the_SignIn_button();*/
-        email_address_is_registered();
-        password_matches_email_address();
-        i_enter_username();
-        i_enter_password();
-        Thread.sleep(2000);
-        i_click_the_SignIn_button();
-
-        email_address_is_registered();
-        password_matches_email_address();
-        i_enter_username();
-        i_enter_password();
-        Thread.sleep(2000);
-        i_click_the_SignIn_button();
 
     }
 

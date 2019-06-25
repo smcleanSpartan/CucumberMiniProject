@@ -9,6 +9,7 @@ Scenario: Navigating to accounts page
 
   Scenario: Successful login
     Given I am on the accounts page
+    And I am not logged in
     And Email address is registered
     And password matches email address
     When I enter email
@@ -19,6 +20,7 @@ Scenario: Navigating to accounts page
 
   Scenario: Incorrect password
     Given I am on the accounts page
+    And I am not logged in
     And Email address is registered
     And password does not match email address
     When I enter email
@@ -30,6 +32,7 @@ Scenario: Navigating to accounts page
 
   Scenario: Invalid password
     Given I am on the accounts page
+    And I am not logged in
     And Email address is registered
     And password is too short
     When I enter email
@@ -41,6 +44,7 @@ Scenario: Navigating to accounts page
 
   Scenario: Invalid email
     Given I am on the accounts page
+    And I am not logged in
     And Email address is too short
     And password matches email address
     When I enter email
@@ -48,4 +52,6 @@ Scenario: Navigating to accounts page
     And I click the login button
     Then The authentication page displays
     And my status remains logged out
-    And I recieve error message "Invalid Email Address."
+    And I recieve error message "Invalid email address."
+
+ 
