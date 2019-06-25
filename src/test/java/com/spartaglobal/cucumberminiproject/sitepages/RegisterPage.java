@@ -31,6 +31,7 @@ public class RegisterPage {
     private By mobilePhone = By.id("phone_mobile");
     private By addressAlias = By.id("alias");
     private By registerBTN = By.id("submitAccount");
+    private By registerError = By.className("alert-danger");
 
     public void setTitle(String title){
         if(title.equalsIgnoreCase("mr")){
@@ -102,6 +103,10 @@ public class RegisterPage {
 
     public void clickRegister(){
         driver.findElement(registerBTN).click();
+    }
+
+    public boolean isErrorVisible(){
+        return driver.findElement(registerError).isDisplayed();
     }
 
 }

@@ -5,9 +5,12 @@ import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
-import org.junit.After;
 import org.junit.Assert;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import utilities.DriverUtilities;
+
+import java.util.Timer;
 
 
 public class SignInPageDefs {
@@ -100,5 +103,62 @@ public class SignInPageDefs {
     public void email_address_is_too_short() {
         email="a";
     }
+
+    private String registerURL = "http://automationpractice.com/index.php?controller=authentication&back=my-account#account-creation";
+    private WebDriverWait driverWait = new WebDriverWait(site.getAccountPage().getDriver(), 500);
+
+    @Given("I enter {string}")
+    public void i_enter(String email) {
+        driverWait.until(ExpectedConditions.urlToBe("http://automationpractice.com/index.php?controller=authentication&back=my-account"));
+        site.getAccountPage().enterCreateAccountEmail(email);
+    }
+
+    @When("I click create account button")
+    public void i_click_create_account_button() {
+        site.getAccountPage().clickCreateAccountBTN();
+    }
+
+    @Then("The register page displays")
+    public void the_register_page_displays() {
+        driverWait.until(ExpectedConditions.urlToBe(registerURL));
+        Assert.assertEquals(registerURL, site.getAccountPage().getCurrentUrl());
+    }
+
+    @Given("I am on the register page")
+    public void i_am_on_the_register_page() {
+        Assert.assertEquals(registerURL, site.getAccountPage().getCurrentUrl());
+    }
+
+    @When("I enter all required fields")
+    public void i_enter_all_required_fields() {
+        site.getRegisterPage().setTitle("Mr");
+        site.getRegisterPage().setFirstName("Dave");
+        site.getRegisterPage().setLastName("Jones");
+        site.getRegisterPage().setPassword("flint09");
+        site.getRegisterPage().setDob(07, 02, 1989);
+        site.getRegisterPage().setAddressFirstName("Dave");
+        site.getRegisterPage().setAddressLastName("Jones");
+        site.getRegisterPage().setAdressLine1("1 Floobart Street");
+        site.getRegisterPage().setCity("London");
+        site.getRegisterPage().setState(4);
+        site.getRegisterPage().setPostCode("N22 8SG");
+        site.getRegisterPage().setCountry(1);
+        site.getRegisterPage().setMobileNumber("07983640306");
+        site.getRegisterPage().setAlias("MyAddress");
+
+    }
+
+    @When("I click register button")
+    public void i_click_register_button() {
+        site.getRegisterPage().clickRegister();
+    }
+
+    @Then("I recieve account created message")
+    public void i_recieve_account_created_message() {
+
+        Assert.assertTrue(site.getRegisterPage().isErrorVisible());
+
+    }
+
 
 }

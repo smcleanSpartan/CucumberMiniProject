@@ -5,7 +5,7 @@ import org.openqa.selenium.WebDriver;
 
 public class AccountPage {
     private WebDriver driver;
-    
+
     private String accountPageURL = "http://automationpractice.com/index.php?controller=authentication&back=my-account";
     private By createAccountEmailField = By.id("email_create");
     private By createAccountBTN = By.id("SubmitCreate");
