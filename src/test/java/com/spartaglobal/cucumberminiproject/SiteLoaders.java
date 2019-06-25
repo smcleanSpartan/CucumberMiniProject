@@ -16,13 +16,10 @@ public class SiteLoaders {
     private PaymentPage paymentPage;
     private SummaryPage summaryPage;
     private ShippingPage shippingPage;
-
-    HomePage homePage;
-    PrintedDressPage printedDressPaged;
-    AccountPage accountPage;
-    SignInPage signInPage;
-    AuthenticationPage authenticationPage;
-
+    private PrintedDressPage printedDressPaged;
+    private AccountPage accountPage;
+    private SignInPage signInPage;
+    private AuthenticationPage authenticationPage;
 
     public SiteLoaders(WebDriver driver){
         this.driver = driver;

@@ -9,57 +9,17 @@ import org.junit.Assert;
 import utilities.DriverUtilities;
 
 public class SiteStepDef {
+    static SiteStepDef siteStepDef;
 
-    static SiteLoaders automationPracticeSite;
+    private static SiteLoaders automationPracticeSite;
+    private String email;
+    private String password;
 
     static {
         automationPracticeSite = new SiteLoaders(DriverUtilities.getInstanceOfDriverUtilities().getDriver());
     }
 
-    //automation practice work
-    // checkout item
-    @Given("I am on the Summary page")
-    public void i_am_on_the_Summary_page() {
-//input one of Rahul's tests to get ot this point
-        automationPracticeSite.getSummaryPage().goToSummaryPage();
-    }
 
-    @And("I am signed in")
-    public void i_am_signed_in() {
-        //check i am signed in? from angus
-        automationPracticeSite.getSummaryPage().goToSignInPage();
-    }
-
-    @And("I input all correct fields until Payment page")
-    public void i_input_all_correct_fields_until_Payment_page() {
-        automationPracticeSite.getSummaryPage().clickProceedToCheckoutButton();
-        automationPracticeSite.getSummaryPage().clickProcessAddressButton();
-        automationPracticeSite.getShippingPage().clickTermsCheckBox();
-        automationPracticeSite.getShippingPage().clickProceedToCheckoutButton();
-    }
-
-    @When("I click the pay by {string}")
-    public void i_click_the_pay_by_payment_type(String paymentType) {
-        if (paymentType.equals("bank wire")){
-            automationPracticeSite.getPaymentPage().clickPayByBankWireButton();
-        } else if (paymentType.equals("check")){
-            automationPracticeSite.getPaymentPage().clickPayByCheckButton();
-        } else {
-            System.out.println("Please enter a valid payment method 'check' or 'bank wire'");
-        }
-    }
-    @And("I confirm my order")
-    public void i_confirm_my_order() {
-        automationPracticeSite.getPaymentPage().clickConfirmMyOrderButton();
-    }
-    @Then("I receive the message {string}")
-    public void i_receive_the_message(String successMessage) {
-        Assert.assertEquals(successMessage, automationPracticeSite.getPaymentPage().getSuccessfulPurchaseMessage());
-    }
-
-    private String email;
-    private String password;
-    
     @Given("I am on the homepage")
     public void i_am_on_the_homepage() {
         automationPracticeSite.getHomePage().goToHomePage();
@@ -146,8 +106,6 @@ public class SiteStepDef {
         email="a";
     }
 
-
-
     //Adding an item on the homepage to basket
     @And("I see a grid of items")
     public void i_see_a_grid_of_items() {
@@ -201,6 +159,69 @@ public class SiteStepDef {
     @Then("{int} printed dresses gets added to the basket")
     public void printed_dresses_gets_added_to_the_basket(Integer quantity) {
         Assert.assertEquals("4", automationPracticeSite.getPrintedDressPaged().getQuanityInCart());
+    }
+    @And("I click go to Checkout")
+    public void i_click_go_to_Checkout() {
         automationPracticeSite.getPrintedDressPaged().goToCheckout();
+    }
+
+    @Given("I am on the Summary page")
+    public void i_am_on_the_Summary_page() throws InterruptedException {
+//input one of Rahul's tests to get ot this point
+        automationPracticeSite.getHomePage().goToHomePage();
+        click_Add_to_cart();
+        Thread.sleep(1000);
+        i_click_go_to_Checkout();
+        //Thread.sleep(1000);
+        automationPracticeSite.getSummaryPage().clickProceedToCheckoutButton();
+        // wrong username and password
+
+
+    }
+    @And("I am signed in")
+    public void i_am_signed_in() throws InterruptedException {
+        //sign in here
+        /*automationPracticeSite.getSummaryPage().clickProceedToCheckoutButton();
+        i_click_the_SignIn_button();*/
+        email_address_is_registered();
+        password_matches_email_address();
+        i_enter_username();
+        i_enter_password();
+        Thread.sleep(2000);
+        i_click_the_SignIn_button();
+
+        email_address_is_registered();
+        password_matches_email_address();
+        i_enter_username();
+        i_enter_password();
+        Thread.sleep(2000);
+        i_click_the_SignIn_button();
+
+    }
+
+    @And("I input all correct fields until Payment page")
+    public void i_input_all_correct_fields_until_Payment_page() {
+        automationPracticeSite.getSummaryPage().clickProcessAddressButton();
+        automationPracticeSite.getShippingPage().clickTermsCheckBox();
+        automationPracticeSite.getShippingPage().clickProceedToCheckoutButton();
+    }
+
+    @When("I click the pay by {string}")
+    public void i_click_the_pay_by_payment_type(String paymentType) {
+        if (paymentType.equals("bank wire")){
+            automationPracticeSite.getPaymentPage().clickPayByBankWireButton();
+        } else if (paymentType.equals("check")){
+            automationPracticeSite.getPaymentPage().clickPayByCheckButton();
+        } else {
+            System.out.println("Please enter a valid payment method 'check' or 'bank wire'");
+        }
+    }
+    @And("I confirm my order")
+    public void i_confirm_my_order() {
+        automationPracticeSite.getPaymentPage().clickConfirmMyOrderButton();
+    }
+    @Then("I receive the message {string}")
+    public void i_receive_the_message(String successMessage) {
+        Assert.assertEquals(successMessage, automationPracticeSite.getPaymentPage().getSuccessfulPurchaseMessage());
     }
 }
