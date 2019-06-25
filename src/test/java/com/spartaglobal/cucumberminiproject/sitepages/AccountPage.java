@@ -5,22 +5,22 @@ import org.openqa.selenium.WebDriver;
 
 public class AccountPage {
     private WebDriver driver;
-
-    private String accountPage = "http://automationpractice.com/index.php?controller=authentication&back=my-account";
+    
+    private String accountPageURL = "http://automationpractice.com/index.php?controller=authentication&back=my-account";
     private By createAccountEmailField = By.id("email_create");
     private By createAccountBTN = By.id("SubmitCreate");
     private By signInEmailField = By.id("email");
     private By signInPasswordField = By.id("passwd");
     private By signInBTN = By.id("SubmitLogin");
     private By createAccountError = By.id("create_account_error");
-
+    private By errorMessage=By.xpath("//*[@id=\"center_column\"]/div[1]/ol/li");
 
     public AccountPage(WebDriver driver) {
         this.driver = driver;
     }
 
     public void goToAccountPage(){
-        driver.navigate().to(accountPage);
+        driver.navigate().to(accountPageURL);
     }
 
     public void enterCreateAccountEmail(String email){
@@ -39,11 +39,11 @@ public class AccountPage {
         driver.findElement(createAccountBTN).click();
     }
 
-    public void enterSignInEamil(String email){
+    public void enterSignInEmail(String email){
         driver.findElement(signInEmailField).sendKeys(email);
     }
 
-    public void enterSignInPassowrd(String password){
+    public void enterSignInPassword(String password){
         driver.findElement(signInPasswordField).sendKeys(password);
     }
 
@@ -53,5 +53,13 @@ public class AccountPage {
 
     public WebDriver getDriver() {
         return driver;
+    }
+
+    public String returnErrorMessage(){
+        return driver.findElement(errorMessage).getText();
+    }
+
+    public String returnCurrentURL(){
+        return driver.getCurrentUrl();
     }
 }

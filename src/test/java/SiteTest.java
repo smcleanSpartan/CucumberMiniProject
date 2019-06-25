@@ -74,7 +74,6 @@ public class SiteTest {
         site.getRegisterPage().setMobileNumber("07983640306");
         site.getRegisterPage().setAlias("MyAddress");
         site.getRegisterPage().clickRegister();
-
     }
 
 }
