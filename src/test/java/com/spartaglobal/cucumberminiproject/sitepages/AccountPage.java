@@ -7,11 +7,13 @@ public class AccountPage {
     private WebDriver driver;
 
     private String accountPage = "http://automationpractice.com/index.php?controller=authentication&back=my-account";
-    private By creatAccountEmailField = By.id("");
-    private By creatAccountBTN = By.id("");
-    private By signInEmailField = By.id("");
-    private By signInPasswordField = By.id("");
-    private By signInBTN = By.id("");
+    private By createAccountEmailField = By.id("email_create");
+    private By createAccountBTN = By.id("SubmitCreate");
+    private By signInEmailField = By.id("email");
+    private By signInPasswordField = By.id("passwd");
+    private By signInBTN = By.id("SubmitLogin");
+    private By createAccountError = By.id("create_account_error");
+
 
     public AccountPage(WebDriver driver) {
         this.driver = driver;
@@ -21,12 +23,20 @@ public class AccountPage {
         driver.navigate().to(accountPage);
     }
 
-    public void enterCereateAccountEmail(String email){
-        driver.findElement(creatAccountEmailField).sendKeys(email);
+    public void enterCreateAccountEmail(String email){
+        driver.findElement(createAccountEmailField).sendKeys(email);
+    }
+
+    public String getCreateAccountError() {
+        return driver.findElement(createAccountError).getText();
+    }
+
+    public String getCurrentUrl(){
+        return driver.getCurrentUrl();
     }
 
     public void clickCreateAccountBTN(){
-        driver.findElement(creatAccountBTN).click();
+        driver.findElement(createAccountBTN).click();
     }
 
     public void enterSignInEamil(String email){
@@ -39,5 +49,9 @@ public class AccountPage {
 
     public void clickSignInBTN(){
         driver.findElement(signInBTN).click();
+    }
+
+    public WebDriver getDriver() {
+        return driver;
     }
 }
