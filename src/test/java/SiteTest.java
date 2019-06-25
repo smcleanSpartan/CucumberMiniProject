@@ -12,9 +12,15 @@ public class SiteTest {
     }
 
     @Test
+    public void InputEmail(String email) {
+        //site.getHomePage().
+    }
+
+    @Test
     public void createAccount(){
         site.getAccountPage().goToAccountPage();
         site.getAccountPage().enterCereateAccountEmail("admin@admin.com");
         site.getAccountPage().clickSignInBTN();
+
     }
 }
