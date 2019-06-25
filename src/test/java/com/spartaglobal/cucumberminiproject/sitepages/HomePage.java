@@ -7,6 +7,7 @@ import org.openqa.selenium.interactions.Actions;
 
 public class HomePage {
     private WebDriver driver;
+    private By signInButton=By.xpath("//*[@id=\"header\"]/div[2]/div/div/nav/div[1]/a");
 
     // Page Identifiers
     private String homePageUrl = "http://automationpractice.com/index.php";
@@ -28,6 +29,7 @@ public class HomePage {
     public void goToHomePage(){
         driver.navigate().to(homePageUrl);
     }
+
 
     public boolean hasItems(){
         if(driver.findElement(mostPopular).isDisplayed()||driver.findElement(bestSellers).isDisplayed()){
@@ -58,4 +60,10 @@ public class HomePage {
 
 
 
+=======
+    public void clickSignIn(){
+        driver.findElement(signInButton).click();
+    }
+
+>>>>>>> dev
 }
