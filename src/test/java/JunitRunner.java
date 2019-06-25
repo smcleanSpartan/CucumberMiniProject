@@ -4,7 +4,7 @@ import org.junit.runner.RunWith;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-        plugin = {"automation", "html:reports"}
+        plugin = {"pretty", "html:reports"}
 )
 
 public class JunitRunner {
