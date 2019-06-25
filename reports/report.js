@@ -14,7 +14,7 @@ formatter.step({
   "keyword": "Given "
 });
 formatter.match({
-  "location": "AddToBasketStepDefs.i_am_on_the_homepage()"
+  "location": "SiteStepDef.i_am_on_the_homepage()"
 });
 formatter.result({
   "status": "passed"
@@ -24,7 +24,7 @@ formatter.step({
   "keyword": "And "
 });
 formatter.match({
-  "location": "AddToBasketStepDefs.i_see_a_grid_of_items()"
+  "location": "SiteStepDef.i_see_a_grid_of_items()"
 });
 formatter.result({
   "status": "passed"
@@ -34,7 +34,7 @@ formatter.step({
   "keyword": "When "
 });
 formatter.match({
-  "location": "AddToBasketStepDefs.i_hover_over_on_and_item()"
+  "location": "SiteStepDef.i_hover_over_on_and_item()"
 });
 formatter.result({
   "status": "passed"
@@ -44,7 +44,7 @@ formatter.step({
   "keyword": "And "
 });
 formatter.match({
-  "location": "AddToBasketStepDefs.click_Add_to_cart()"
+  "location": "SiteStepDef.click_Add_to_cart()"
 });
 formatter.result({
   "status": "passed"
@@ -54,7 +54,7 @@ formatter.step({
   "keyword": "Then "
 });
 formatter.match({
-  "location": "AddToBasketStepDefs.that_item_gets_added_to_the_cart()"
+  "location": "SiteStepDef.that_item_gets_added_to_the_cart()"
 });
 formatter.result({
   "status": "passed"
@@ -69,7 +69,7 @@ formatter.step({
   "keyword": "Given "
 });
 formatter.match({
-  "location": "AddToBasketStepDefs.i_am_on_the_page_for_the_printed_dress()"
+  "location": "SiteStepDef.i_am_on_the_page_for_the_printed_dress()"
 });
 formatter.result({
   "status": "passed"
@@ -79,7 +79,7 @@ formatter.step({
   "keyword": "When "
 });
 formatter.match({
-  "location": "AddToBasketStepDefs.i_select_the_size_to_be_medium()"
+  "location": "SiteStepDef.i_select_the_size_to_be_medium()"
 });
 formatter.result({
   "status": "passed"
@@ -89,7 +89,7 @@ formatter.step({
   "keyword": "And "
 });
 formatter.match({
-  "location": "AddToBasketStepDefs.i_click_Add_to_cart()"
+  "location": "SiteStepDef.i_click_Add_to_cart()"
 });
 formatter.result({
   "status": "passed"
@@ -99,7 +99,7 @@ formatter.step({
   "keyword": "Then "
 });
 formatter.match({
-  "location": "AddToBasketStepDefs.a_size_medium_printed_dress_gets_added_to_the_basket()"
+  "location": "SiteStepDef.a_size_medium_printed_dress_gets_added_to_the_basket()"
 });
 formatter.result({
   "status": "passed"
@@ -114,7 +114,7 @@ formatter.step({
   "keyword": "Given "
 });
 formatter.match({
-  "location": "AddToBasketStepDefs.i_am_on_the_page_for_the_printed_dress()"
+  "location": "SiteStepDef.i_am_on_the_page_for_the_printed_dress()"
 });
 formatter.result({
   "status": "passed"
@@ -124,7 +124,7 @@ formatter.step({
   "keyword": "When "
 });
 formatter.match({
-  "location": "AddToBasketStepDefs.i_change_the_quantity_to(Integer)"
+  "location": "SiteStepDef.i_change_the_quantity_to(Integer)"
 });
 formatter.result({
   "status": "passed"
@@ -134,7 +134,7 @@ formatter.step({
   "keyword": "And "
 });
 formatter.match({
-  "location": "AddToBasketStepDefs.i_click_Add_to_cart()"
+  "location": "SiteStepDef.i_click_Add_to_cart()"
 });
 formatter.result({
   "status": "passed"
@@ -144,7 +144,7 @@ formatter.step({
   "keyword": "Then "
 });
 formatter.match({
-  "location": "AddToBasketStepDefs.printed_dresses_gets_added_to_the_basket(Integer)"
+  "location": "SiteStepDef.printed_dresses_gets_added_to_the_basket(Integer)"
 });
 formatter.result({
   "status": "passed"
