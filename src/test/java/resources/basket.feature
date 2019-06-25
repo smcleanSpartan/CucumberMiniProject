@@ -8,6 +8,13 @@ Feature: Adding to basket
     Then That item gets added to the cart
 
 
+  Scenario: Adding a dress from the dresses category page
+    Given I am on the the dresses category page
+    When I click the Add to cart button under the printed summer dress
+    Then a printed summer dress gets added to cart
+
+
+
   Scenario: Adding a size medium printed dress
     Given I am on the page for the printed dress
     When I select the size to be medium

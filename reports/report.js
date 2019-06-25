@@ -511,6 +511,41 @@ formatter.result({
   "status": "passed"
 });
 formatter.scenario({
+  "name": "Adding a dress from the dresses category page",
+  "description": "",
+  "keyword": "Scenario"
+});
+formatter.step({
+  "name": "I am on the the dresses category page",
+  "keyword": "Given "
+});
+formatter.match({
+  "location": "SiteStepDef.i_am_on_the_the_dresses_category_page()"
+});
+formatter.result({
+  "status": "passed"
+});
+formatter.step({
+  "name": "I click the Add to cart button under the printed summer dress",
+  "keyword": "When "
+});
+formatter.match({
+  "location": "SiteStepDef.i_click_the_Add_to_cart_button_under_the_printed_summer_dress()"
+});
+formatter.result({
+  "status": "passed"
+});
+formatter.step({
+  "name": "a printed summer dress gets added to cart",
+  "keyword": "Then "
+});
+formatter.match({
+  "location": "SiteStepDef.a_printed_summer_dress_gets_added_to_cart()"
+});
+formatter.result({
+  "status": "passed"
+});
+formatter.scenario({
   "name": "Adding a size medium printed dress",
   "description": "",
   "keyword": "Scenario"

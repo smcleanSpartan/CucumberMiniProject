@@ -95,7 +95,8 @@ public class SiteStepDef {
 
     @Given("password does not match email address")
     public void password_does_not_match_email_address() {
-        automationPracticeSite.getAccountPage().enterSignInPassword("abcdefgh");
+        password="abcdefgh";
+
     }
 
     @Then("The authentication page displays")
@@ -144,6 +145,23 @@ public class SiteStepDef {
     public void that_item_gets_added_to_the_cart() {
         Assert.assertTrue(automationPracticeSite.getHomePage().getSuccessText().contains("Product successfully added to your shopping cart"));
     }
+
+    //Adding item from category page to basket
+    @Given("I am on the the dresses category page")
+    public void i_am_on_the_the_dresses_category_page() {
+        site.getDressesCategoryPage().goToDressesCategoryPage();
+    }
+
+    @When("I click the Add to cart button under the printed summer dress")
+    public void i_click_the_Add_to_cart_button_under_the_printed_summer_dress() throws InterruptedException {
+        site.getDressesCategoryPage().clickAddToCart();
+    }
+
+    @Then("a printed summer dress gets added to cart")
+    public void a_printed_summer_dress_gets_added_to_cart() {
+        Assert.assertTrue(site.getPrintedDressPaged().getSuccessText().contains("Product successfully added to your shopping cart"));
+    }
+
 
     //Selecting a size then adding the item to basket
     @Given("I am on the page for the printed dress")
