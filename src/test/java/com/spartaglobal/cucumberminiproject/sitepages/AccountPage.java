@@ -14,6 +14,8 @@ public class AccountPage {
     private By signInBTN = By.id("SubmitLogin");
     private By createAccountError = By.id("create_account_error");
     private By errorMessage=By.xpath("//*[@id=\"center_column\"]/div[1]/ol/li");
+    private By signInStatus=By.xpath("//*[@id=\"header\"]/div[2]/div/div/nav/div[1]/a");
+    private By signOut=By.xpath("//*[@id=\"header\"]/div[2]/div/div/nav/div[2]/a");
 
     public AccountPage(WebDriver driver) {
         this.driver = driver;
@@ -61,5 +63,13 @@ public class AccountPage {
 
     public String returnCurrentURL(){
         return driver.getCurrentUrl();
+    }
+
+    public String returnSignInStatus(){
+        return driver.findElement(signInStatus).getText();
+    }
+
+    public void clickSignOut(){
+        driver.findElement(signOut).click();
     }
 }
