@@ -20,7 +20,7 @@ public class SiteStepDef {
     // checkout item
     @Given("I am on the Summary page")
     public void i_am_on_the_Summary_page() {
-//input one of rahuls tests to get ot this point
+//input one of Rahul's tests to get ot this point
         automationPracticeSite.getSummaryPage().goToSummaryPage();
     }
 
@@ -38,16 +38,20 @@ public class SiteStepDef {
         automationPracticeSite.getShippingPage().clickProceedToCheckoutButton();
     }
 
-    @When("I click the pay by bank wire")
-    public void i_click_the_pay_by_bank_wire() {
-        automationPracticeSite.getPaymentPage().clickPayByBankWireButton();
+    @When("I click the pay by {string}")
+    public void i_click_the_pay_by_payment_type(String paymentType) {
+        if (paymentType.equals("bank wire")){
+            automationPracticeSite.getPaymentPage().clickPayByBankWireButton();
+        } else if (paymentType.equals("check")){
+            automationPracticeSite.getPaymentPage().clickPayByCheckButton();
+        } else {
+            System.out.println("Please enter a valid payment method 'check' or 'bank wire'");
+        }
     }
-
     @And("I confirm my order")
     public void i_confirm_my_order() {
         automationPracticeSite.getPaymentPage().clickConfirmMyOrderButton();
     }
-
     @Then("I receive the message {string}")
     public void i_receive_the_message(String successMessage) {
         Assert.assertEquals(successMessage, automationPracticeSite.getPaymentPage().getSuccessfulPurchaseMessage());
