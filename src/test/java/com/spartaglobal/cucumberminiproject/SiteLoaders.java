@@ -25,6 +25,10 @@ public class SiteLoaders {
         authenticationPage = new AuthenticationPage(driver);
     }
 
+    public void tearDown(){
+        driver.quit();
+    }
+
     //Pages
     public HomePage getHomePage() {
         return homePage;
