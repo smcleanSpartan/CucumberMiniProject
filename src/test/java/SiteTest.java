@@ -11,7 +11,6 @@ public class SiteTest {
         site.getHomePage().goToHomePage();
     }
 
-
     @Test
     public void createAccount(){
         site.getAccountPage().goToAccountPage();
