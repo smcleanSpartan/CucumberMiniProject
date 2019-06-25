@@ -13,6 +13,8 @@ public class AccountPage {
     //private By signInPasswordField = By.id("psswd");
     private By signInPasswordField = By.xpath("//*[@id=\"passwd\"]");
     private By errorMessage=By.xpath("//*[@id=\"center_column\"]/div[1]/ol/li");
+    private By signInStatus=By.xpath("//*[@id=\"header\"]/div[2]/div/div/nav/div[1]/a");
+    private By signOut=By.xpath("//*[@id=\"header\"]/div[2]/div/div/nav/div[2]/a");
 
     private By signInBTN = By.id("SubmitLogin");
 
@@ -51,4 +53,13 @@ public class AccountPage {
     public String returnCurrentURL(){
         return driver.getCurrentUrl();
     }
+
+    public String returnSignInStatus(){
+        return driver.findElement(signInStatus).getText();
+    }
+
+    public void clickSignOut(){
+        driver.findElement(signOut).click();
+    }
+
 }
