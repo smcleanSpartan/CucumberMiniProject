@@ -13,6 +13,7 @@ public class SiteLoaders {
     private AccountPage accountPage;
     private SignInPage signInPage;
     private AuthenticationPage authenticationPage;
+    private DressesCategoryPage dressesCategoryPage;
 
 
     public SiteLoaders(WebDriver driver){

@@ -8,7 +8,7 @@ public class PaymentPage {
     private By payByBankWireField = By.xpath("//*[@id=\"HOOK_PAYMENT\"]/div[1]/div/p/a");
     private By payByCheckField = By.xpath("//*[@id=\"HOOK_PAYMENT\"]/div[2]/div/p/a");
     private By confirmMyOrder = By.xpath("//*[@id=\"cart_navigation\"]/button");
-    private By orderCompleteMessage = By.className("dark");
+    private By orderCompleteMessage = By.xpath("//*[@id=\"center_column\"]/p[1]");
 
 
     public PaymentPage(WebDriver driver) {
