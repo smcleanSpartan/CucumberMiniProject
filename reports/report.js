@@ -635,4 +635,85 @@ formatter.match({
 formatter.result({
   "status": "passed"
 });
+formatter.step({
+  "name": "I click go to Checkout",
+  "keyword": "And "
+});
+formatter.match({
+  "location": "SiteStepDef.i_click_go_to_Checkout()"
+});
+formatter.result({
+  "status": "passed"
+});
+formatter.uri("classpath:checkout.feature");
+formatter.feature({
+  "name": "Automation Practice Checkout",
+  "description": "  As a user of the automation practice site\n  I want to buy an item",
+  "keyword": "Feature"
+});
+formatter.scenario({
+  "name": "I can buy an item by payment type",
+  "description": "",
+  "keyword": "Scenario"
+});
+formatter.step({
+  "name": "I am signed in",
+  "keyword": "Given "
+});
+formatter.match({
+  "location": "SiteStepDef.i_am_signed_in()"
+});
+formatter.result({
+  "status": "passed"
+});
+formatter.step({
+  "name": "I am on the Summary page",
+  "keyword": "And "
+});
+formatter.match({
+  "location": "SiteStepDef.i_am_on_the_Summary_page()"
+});
+formatter.result({
+  "status": "passed"
+});
+formatter.step({
+  "name": "I input all correct fields until Payment page",
+  "keyword": "And "
+});
+formatter.match({
+  "location": "SiteStepDef.i_input_all_correct_fields_until_Payment_page()"
+});
+formatter.result({
+  "status": "passed"
+});
+formatter.step({
+  "name": "I click the pay by \"check\"",
+  "keyword": "When "
+});
+formatter.match({
+  "location": "SiteStepDef.i_click_the_pay_by_payment_type(String)"
+});
+formatter.result({
+  "status": "passed"
+});
+formatter.step({
+  "name": "I confirm my order",
+  "keyword": "And "
+});
+formatter.match({
+  "location": "SiteStepDef.i_confirm_my_order()"
+});
+formatter.result({
+  "status": "passed"
+});
+formatter.step({
+  "name": "I receive the message \"Your order on My Store is complete.\"",
+  "keyword": "Then "
+});
+formatter.match({
+  "location": "SiteStepDef.i_receive_the_message(String)"
+});
+formatter.result({
+  "status": "passed"
+});
 });
