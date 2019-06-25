@@ -27,3 +27,4 @@ Feature: Adding to basket
     When I change the quantity to 3
     And I click Add to cart
     Then 3 printed dresses gets added to the basket
+    And I click go to Checkout
