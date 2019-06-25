@@ -11,10 +11,6 @@ public class SiteTest {
         site.getHomePage().goToHomePage();
     }
 
-    @Test
-    public void InputEmail(String email) {
-        //site.getHomePage().
-    }
 
     @Test
     public void createAccount(){

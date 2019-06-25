@@ -30,9 +30,9 @@ public class SiteLoaders {
         return homePage;
     }
 
-    public PrintedDressPage getPrintedDressPaged(){
+    public PrintedDressPage getPrintedDressPaged() {
         return printedDressPaged;
-
+    }
 
     public AccountPage getAccountPage() {
         return accountPage;

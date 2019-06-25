@@ -57,13 +57,8 @@ public class HomePage {
 
 
 
-
-
-
-=======
     public void clickSignIn(){
         driver.findElement(signInButton).click();
     }
 
->>>>>>> dev
 }
