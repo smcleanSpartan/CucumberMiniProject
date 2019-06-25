@@ -24,9 +24,9 @@ Scenario: Navigating to accounts page
     When I enter email
     And I enter password
     And I click the login button
-    Then I remain on the accounts page
+    Then The authentication page displays
     And my status remains logged out
-    And I recieve error message "Authentication Failed"
+    And I recieve error message "Authentication failed."
 
   Scenario: Invalid password
     Given I am on the accounts page
@@ -35,9 +35,9 @@ Scenario: Navigating to accounts page
     When I enter email
     And I enter password
     And I click the login button
-    Then I remain on the accounts page
+    Then The authentication page displays
     And my status remains logged out
-    And I recieve error message "Invalid Password"
+    And I recieve error message "Invalid password."
 
   Scenario: Invalid email
     Given I am on the accounts page
@@ -46,6 +46,6 @@ Scenario: Navigating to accounts page
     When I enter email
     And I enter password
     And I click the login button
-    Then I remain on the accounts page
+    Then The authentication page displays
     And my status remains logged out
-    And I recieve error message "Invalid Email Address"
+    And I recieve error message "Invalid Email Address."

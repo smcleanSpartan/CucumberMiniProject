@@ -12,9 +12,9 @@ public class SiteTest {
     }
 
     @Test
-    public void InputEmail(String email){
+    public void InputEmail(String email) {
         //site.getHomePage().
-
+    }
 
     @Test
     public void createAccount(){
