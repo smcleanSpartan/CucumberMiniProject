@@ -15,6 +15,17 @@ public class SiteStepDef {
     private String password;
     static SiteLoaders site = new SiteLoaders(new DriverUtilities().getDriver());
 
+    @Given("I am signed in")
+    public void i_am_signed_in(){
+        site.getAccountPage().goToAccountPage();
+        email="amacdougall@spartaglobal.com";
+        password="Sparta2019";
+        site.getAccountPage().enterSignInEmail(email);
+        site.getAccountPage().enterSignInPassword(password);
+        site.getAccountPage().clickSignInBTN();
+        site.getHomePage().goToHomePage();
+    }
+
     @Given("I am on the homepage")
     public void i_am_on_the_homepage() {
         site.getHomePage().goToHomePage();
@@ -79,7 +90,7 @@ public class SiteStepDef {
 
     @Given("password does not match email address")
     public void password_does_not_match_email_address() {
-        site.getAccountPage().enterSignInPassword("abcdefgh");
+        password="abcdefgh";
     }
 
     @Then("The authentication page displays")
