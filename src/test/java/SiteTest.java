@@ -25,7 +25,6 @@ public class SiteTest {
         site.getPrintedDressPaged().goToPrintedDressPage();
     }
 
-
     @Test
     public void createAccount(){
         site.getAccountPage().goToAccountPage();
