@@ -7,16 +7,15 @@ public class AccountPage {
     private WebDriver driver;
 
     private String accountPageURL = "http://automationpractice.com/index.php?controller=authentication&back=my-account";
-    private By creatAccountEmailField = By.id("");
-    private By creatAccountBTN = By.id("");
+    private By createAccountEmailField = By.id("email_create");
+    private By createAccountBTN = By.id("SubmitCreate");
     private By signInEmailField = By.id("email");
-    //private By signInPasswordField = By.id("psswd");
-    private By signInPasswordField = By.xpath("//*[@id=\"passwd\"]");
+    private By signInPasswordField = By.id("passwd");
+    private By signInBTN = By.id("SubmitLogin");
+    private By createAccountError = By.id("create_account_error");
     private By errorMessage=By.xpath("//*[@id=\"center_column\"]/div[1]/ol/li");
     private By signInStatus=By.xpath("//*[@id=\"header\"]/div[2]/div/div/nav/div[1]/a");
     private By signOut=By.xpath("//*[@id=\"header\"]/div[2]/div/div/nav/div[2]/a");
-
-    private By signInBTN = By.id("SubmitLogin");
 
     public AccountPage(WebDriver driver) {
         this.driver = driver;
@@ -26,12 +25,20 @@ public class AccountPage {
         driver.navigate().to(accountPageURL);
     }
 
-    public void enterCereateAccountEmail(String email){
-        driver.findElement(creatAccountEmailField).sendKeys(email);
+    public void enterCreateAccountEmail(String email){
+        driver.findElement(createAccountEmailField).sendKeys(email);
+    }
+
+    public String getCreateAccountError() {
+        return driver.findElement(createAccountError).getText();
+    }
+
+    public String getCurrentUrl(){
+        return driver.getCurrentUrl();
     }
 
     public void clickCreateAccountBTN(){
-        driver.findElement(creatAccountBTN).click();
+        driver.findElement(createAccountBTN).click();
     }
 
     public void enterSignInEmail(String email){
@@ -44,6 +51,10 @@ public class AccountPage {
 
     public void clickSignInBTN(){
         driver.findElement(signInBTN).click();
+    }
+
+    public WebDriver getDriver() {
+        return driver;
     }
 
     public String returnErrorMessage(){
@@ -61,5 +72,4 @@ public class AccountPage {
     public void clickSignOut(){
         driver.findElement(signOut).click();
     }
-
 }

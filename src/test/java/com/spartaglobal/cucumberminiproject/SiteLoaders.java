@@ -14,6 +14,7 @@ public class SiteLoaders {
     private SignInPage signInPage;
     private AuthenticationPage authenticationPage;
     private DressesCategoryPage dressesCategoryPage;
+    private RegisterPage registerPage;
 
 
     public SiteLoaders(WebDriver driver){
@@ -27,6 +28,7 @@ public class SiteLoaders {
         signInPage = new SignInPage(driver);
         authenticationPage = new AuthenticationPage(driver);
         dressesCategoryPage = new DressesCategoryPage(driver);
+        registerPage = new RegisterPage(driver);
     }
 
     public void tearDown(){
@@ -51,6 +53,10 @@ public class SiteLoaders {
         return accountPage;
     }
 
+    public RegisterPage getRegisterPage(){
+        return registerPage;
+    }
+
     public SignInPage getSignInPage(){
         return signInPage;
     }
@@ -64,4 +70,3 @@ public class SiteLoaders {
         return dressesCategoryPage;
     }
 }
-

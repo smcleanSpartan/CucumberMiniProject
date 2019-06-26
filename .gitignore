@@ -1,5 +1,12 @@
+<<<<<<< HEAD
+# Created by .ignore support plugin (hsz.mobi)
+/.idea
+/target
+/CucumberMiniProject.iml
+=======
 # Created by .ignore support plugin (hsz.mobi)
 /.idea
 /target
 /CucumberMiniProject.iml
 /reports/
+>>>>>>> dev

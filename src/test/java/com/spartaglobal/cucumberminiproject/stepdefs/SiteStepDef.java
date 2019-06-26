@@ -6,55 +6,55 @@ import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.junit.Assert;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import utilities.DriverUtilities;
 
 public class SiteStepDef {
-    static SiteStepDef siteStepDef;
 
-    private static SiteLoaders automationPracticeSite;
+    private static SiteLoaders site = new SiteLoaders(DriverUtilities.getInstanceOfDriverUtilities().getDriver());
+    private String registerURL = "http://automationpractice.com/index.php?controller=authentication&back=my-account#account-creation";
+    private WebDriverWait driverWait = new WebDriverWait(site.getAccountPage().getDriver(), 500);
     private String email;
     private String password;
 
-    static {
-        automationPracticeSite = new SiteLoaders(DriverUtilities.getInstanceOfDriverUtilities().getDriver());
-    }
 
 
     @Given("I am signed in")
     public void i_am_signed_in(){
-        automationPracticeSite.getAccountPage().goToAccountPage();
+        site.getAccountPage().goToAccountPage();
         email="amacdougall@spartaglobal.com";
         password="Sparta2019";
-        automationPracticeSite.getAccountPage().enterSignInEmail(email);
-        automationPracticeSite.getAccountPage().enterSignInPassword(password);
-        automationPracticeSite.getAccountPage().clickSignInBTN();
-        automationPracticeSite.getHomePage().goToHomePage();
+        site.getAccountPage().enterSignInEmail(email);
+        site.getAccountPage().enterSignInPassword(password);
+        site.getAccountPage().clickSignInBTN();
+        site.getHomePage().goToHomePage();
     }
 
     @Given("I am on the homepage")
     public void i_am_on_the_homepage() {
-        automationPracticeSite.getHomePage().goToHomePage();
+        site.getHomePage().goToHomePage();
     }
 
     @When("I click the SignIn button")
     public void i_click_the_SignIn_button() {
-        automationPracticeSite.getHomePage().clickSignIn();
+        site.getHomePage().clickSignIn();
     }
 
     @Then("The accounts page displays")
     public void the_accounts_page_displays() {
-        Assert.assertEquals("http://automationpractice.com/index.php?controller=authentication&back=my-account",automationPracticeSite.getAccountPage().returnCurrentURL());
+        Assert.assertEquals("http://automationpractice.com/index.php?controller=authentication&back=my-account", site.getAccountPage().returnCurrentURL());
     }
 
     @Given("I am on the accounts page")
     public void i_am_on_the_accounts_page() {
-        automationPracticeSite.getAccountPage().goToAccountPage();
+        site.getAccountPage().goToAccountPage();
     }
 
     @And("I am not logged in")
     public void i_am_not_logged_in() {
-        if (!automationPracticeSite.getAccountPage().returnSignInStatus().equals("Sign in")){
-            automationPracticeSite.getAccountPage().clickSignOut();
+        if (!site.getAccountPage().returnSignInStatus().equals("Sign in")){
+            site.getAccountPage().clickSignOut();
         }
     }
 
@@ -70,27 +70,27 @@ public class SiteStepDef {
 
     @When("I enter email")
     public void i_enter_username() {
-        automationPracticeSite.getAccountPage().enterSignInEmail(email);
+        site.getAccountPage().enterSignInEmail(email);
     }
 
     @And("I enter password")
     public void i_enter_password() {
-        automationPracticeSite.getAccountPage().enterSignInPassword(password);
+        site.getAccountPage().enterSignInPassword(password);
     }
 
     @And("I click the login button")
     public void i_click_the_login_button() {
-        automationPracticeSite.getAccountPage().clickSignInBTN();
+        site.getAccountPage().clickSignInBTN();
     }
 
     @Then("The SignIn page displays")
     public void the_SignIn_page_displays() {
-        Assert.assertEquals("http://automationpractice.com/index.php?controller=my-account",automationPracticeSite.getSignInPage().returnCurrentURL());
+        Assert.assertEquals("http://automationpractice.com/index.php?controller=my-account", site.getSignInPage().returnCurrentURL());
     }
 
     @Then("my status becomes logged in")
     public void my_status_becomes_logged_in() {
-        Assert.assertEquals("Angus MacDougall",automationPracticeSite.getSignInPage().returnSignInStatus());
+        Assert.assertEquals("Angus MacDougall", site.getSignInPage().returnSignInStatus());
     }
 
     @Given("password does not match email address")
@@ -101,18 +101,18 @@ public class SiteStepDef {
 
     @Then("The authentication page displays")
     public void i_remain_on_the_accounts_page() {
-        Assert.assertEquals("http://automationpractice.com/index.php?controller=authentication",automationPracticeSite.getAuthenticationPage().returnCurrentURL());
+        Assert.assertEquals("http://automationpractice.com/index.php?controller=authentication", site.getAuthenticationPage().returnCurrentURL());
     }
 
     @Then("my status remains logged out")
     public void my_status_remains_logged_out() {
-        Assert.assertEquals("Sign in",automationPracticeSite.getAuthenticationPage().returnSignInStatus());
+        Assert.assertEquals("Sign in", site.getAuthenticationPage().returnSignInStatus());
     }
 
     @And("I recieve error message {string}")
     public void i_receive_error_message(String inputErrMsg) {
-        System.out.println(automationPracticeSite.getAccountPage().returnErrorMessage());
-        Assert.assertEquals(inputErrMsg, automationPracticeSite.getAccountPage().returnErrorMessage());
+        System.out.println(site.getAccountPage().returnErrorMessage());
+        Assert.assertEquals(inputErrMsg, site.getAccountPage().returnErrorMessage());
     }
 
     @Given("password is too short")
@@ -128,116 +128,168 @@ public class SiteStepDef {
     //Adding an item on the homepage to basket
     @And("I see a grid of items")
     public void i_see_a_grid_of_items() {
-        automationPracticeSite.getHomePage().hasItems();
+        site.getHomePage().hasItems();
     }
 
     @When("I hover over on and item")
     public void i_hover_over_on_and_item() {
-        automationPracticeSite.getHomePage().goToFirstItem();
+        site.getHomePage().goToFirstItem();
     }
 
     @And("Click Add to cart")
     public void click_Add_to_cart() throws InterruptedException {
-        automationPracticeSite.getHomePage().clickAddToCart();
+        site.getHomePage().clickAddToCart();
     }
 
     @Then("That item gets added to the cart")
     public void that_item_gets_added_to_the_cart() {
-        Assert.assertTrue(automationPracticeSite.getHomePage().getSuccessText().contains("Product successfully added to your shopping cart"));
+        Assert.assertTrue(site.getHomePage().getSuccessText().contains("Product successfully added to your shopping cart"));
     }
 
     //Adding item from category page to basket
     @Given("I am on the the dresses category page")
     public void i_am_on_the_the_dresses_category_page() {
-        automationPracticeSite.getDressesCategoryPage().goToDressesCategoryPage();
+        site.getDressesCategoryPage().goToDressesCategoryPage();
     }
 
     @When("I click the Add to cart button under the printed summer dress")
     public void i_click_the_Add_to_cart_button_under_the_printed_summer_dress() throws InterruptedException {
-        automationPracticeSite.getDressesCategoryPage().clickAddToCart();
+        site.getDressesCategoryPage().clickAddToCart();
     }
 
     @Then("a printed summer dress gets added to cart")
     public void a_printed_summer_dress_gets_added_to_cart() {
-        Assert.assertTrue(automationPracticeSite.getPrintedDressPaged().getSuccessText().contains("Product successfully added to your shopping cart"));
+        Assert.assertTrue(site.getPrintedDressPaged().getSuccessText().contains("Product successfully added to your shopping cart"));
     }
 
 
     //Selecting a size then adding the item to basket
     @Given("I am on the page for the printed dress")
     public void i_am_on_the_page_for_the_printed_dress() {
-        automationPracticeSite.getPrintedDressPaged().refresh();
-        automationPracticeSite.getPrintedDressPaged().goToPrintedDressPage();
+        site.getPrintedDressPaged().refresh();
+        site.getPrintedDressPaged().goToPrintedDressPage();
     }
 
     @When("I select the size to be medium")
     public void i_select_the_size_to_be_medium() {
-        automationPracticeSite.getPrintedDressPaged().changeSizeToMedium();
+        site.getPrintedDressPaged().changeSizeToMedium();
     }
 
     @And("I click Add to cart")
     public void i_click_Add_to_cart() throws InterruptedException {
-        automationPracticeSite.getPrintedDressPaged().AddToCart();
+        site.getPrintedDressPaged().AddToCart();
     }
 
     @Then("a size medium printed dress gets added to the basket")
     public void a_size_medium_printed_dress_gets_added_to_the_basket() {
-        Assert.assertTrue(automationPracticeSite.getPrintedDressPaged().getSuccessText().contains("Product successfully added to your shopping cart"));
-        Assert.assertEquals('M', automationPracticeSite.getPrintedDressPaged().getSize());
+        Assert.assertTrue(site.getPrintedDressPaged().getSuccessText().contains("Product successfully added to your shopping cart"));
+        Assert.assertEquals('M', site.getPrintedDressPaged().getSize());
     }
 
-    //Adding multiple of the same item
     @When("I change the quantity to {int}")
     public void i_change_the_quantity_to(Integer quantity) {
-        automationPracticeSite.getPrintedDressPaged().setQuantityField();
+        site.getPrintedDressPaged().setQuantityField();
     }
 
     @Then("{int} printed dresses gets added to the basket")
     public void printed_dresses_gets_added_to_the_basket(Integer quantity) {
-        Assert.assertEquals("4", automationPracticeSite.getPrintedDressPaged().getQuanityInCart());
+        Assert.assertEquals("4", site.getPrintedDressPaged().getQuanityInCart());
     }
     @And("I click go to Checkout")
     public void i_click_go_to_Checkout() {
-        automationPracticeSite.getPrintedDressPaged().goToCheckout();
+        site.getPrintedDressPaged().goToCheckout();
     }
 
     @And("I am on the Summary page")
     public void i_am_on_the_Summary_page() throws InterruptedException {
-//input one of Rahul's tests to get ot this point
-        automationPracticeSite.getHomePage().goToHomePage();
+        site.getHomePage().goToHomePage();
         click_Add_to_cart();
         Thread.sleep(1000);
         i_click_go_to_Checkout();
-        //Thread.sleep(1000);
-        automationPracticeSite.getSummaryPage().clickProceedToCheckoutButton();
-        // wrong username and password
+        site.getSummaryPage().clickProceedToCheckoutButton();
 
 
     }
 
     @And("I input all correct fields until Payment page")
     public void i_input_all_correct_fields_until_Payment_page() {
-        automationPracticeSite.getSummaryPage().clickProcessAddressButton();
-        automationPracticeSite.getShippingPage().clickTermsCheckBox();
-        automationPracticeSite.getShippingPage().clickProceedToCheckoutButton();
+        site.getSummaryPage().clickProcessAddressButton();
+        site.getShippingPage().clickTermsCheckBox();
+        site.getShippingPage().clickProceedToCheckoutButton();
     }
 
     @When("I click the pay by {string}")
     public void i_click_the_pay_by_payment_type(String paymentType) {
         if (paymentType.equals("bank wire")){
-            automationPracticeSite.getPaymentPage().clickPayByBankWireButton();
+            site.getPaymentPage().clickPayByBankWireButton();
         } else if (paymentType.equals("check")){
-            automationPracticeSite.getPaymentPage().clickPayByCheckButton();
+            site.getPaymentPage().clickPayByCheckButton();
         } else {
             System.out.println("Please enter a valid payment method 'check' or 'bank wire'");
         }
     }
     @And("I confirm my order")
     public void i_confirm_my_order() {
-        automationPracticeSite.getPaymentPage().clickConfirmMyOrderButton();
+        site.getPaymentPage().clickConfirmMyOrderButton();
     }
     @Then("I receive the message {string}")
     public void i_receive_the_message(String successMessage) {
-        Assert.assertEquals(successMessage, automationPracticeSite.getPaymentPage().getSuccessfulPurchaseMessage());
+        Assert.assertEquals(successMessage, site.getPaymentPage().getSuccessfulPurchaseMessage());
     }
+
+
+
+    @Given("I enter {string}")
+    public void i_enter(String email) {
+        driverWait.until(ExpectedConditions.urlToBe("http://automationpractice.com/index.php?controller=authentication&back=my-account"));
+        site.getAccountPage().enterCreateAccountEmail(email);
+    }
+
+    @When("I click create account button")
+    public void i_click_create_account_button() {
+        site.getAccountPage().clickCreateAccountBTN();
+    }
+
+    @Then("The register page displays")
+    public void the_register_page_displays() {
+        driverWait.until(ExpectedConditions.urlToBe(registerURL));
+        Assert.assertEquals(registerURL, site.getAccountPage().getCurrentUrl());
+    }
+
+    @Given("I am on the register page")
+    public void i_am_on_the_register_page() {
+        Assert.assertEquals(registerURL, site.getAccountPage().getCurrentUrl());
+    }
+
+    @When("I enter all required fields")
+    public void i_enter_all_required_fields() {
+        site.getRegisterPage().setTitle("Mr");
+        site.getRegisterPage().setFirstName("Dave");
+        site.getRegisterPage().setLastName("Jones");
+        site.getRegisterPage().setPassword("flint09");
+        site.getRegisterPage().setDob(07, 02, 1989);
+        site.getRegisterPage().setAddressFirstName("Dave");
+        site.getRegisterPage().setAddressLastName("Jones");
+        site.getRegisterPage().setAdressLine1("1 Floobart Street");
+        site.getRegisterPage().setCity("London");
+        site.getRegisterPage().setState(4);
+        site.getRegisterPage().setPostCode("N22 8SG");
+        site.getRegisterPage().setCountry(1);
+        site.getRegisterPage().setMobileNumber("07983640306");
+        site.getRegisterPage().setAlias("MyAddress");
+
+    }
+
+    @When("I click register button")
+    public void i_click_register_button() {
+        site.getRegisterPage().clickRegister();
+    }
+
+    @Then("I receive account created message")
+    public void i_receive_account_created_message() {
+
+        Assert.assertTrue(site.getRegisterPage().isErrorVisible());
+
+    }
+
 }

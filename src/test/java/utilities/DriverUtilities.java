@@ -55,7 +55,7 @@ public class DriverUtilities {
 
         switch (driverName) {
             case "Google Chrome":
-                System.setProperty("webdriver.chrome.driver", "C:\\chromedriver.exe");
+                System.setProperty("webdriver.chrome.driver", "/Users/sm-imac/Dropbox/SeleniomPOM/chromedriver");
                 this.driver = new ChromeDriver();
                 break;
             case "Firefox":
