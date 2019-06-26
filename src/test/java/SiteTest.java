@@ -21,7 +21,7 @@ public class SiteTest {
 
     @After
     public void tearDown(){
-        site.tearDown();
+      //  site.tearDown();
     }
 
     @Test
@@ -61,8 +61,8 @@ public class SiteTest {
     @Test
     public void createAccount(){
         site.getAccountPage().goToAccountPage();
-        site.getAccountPage().enterCreateAccountEmail("admin@admin.com");
-        site.getAccountPage().clickSignInBTN();
+        site.getAccountPage().enterCreateAccountEmail("tiptop@tip.com");
+        site.getAccountPage().clickCreateAccountBTN();
 
         String expected = "http://automationpractice.com/index.php?controller=authentication&back=my-account#account-creation";
 

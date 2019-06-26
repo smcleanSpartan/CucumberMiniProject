@@ -15,4 +15,4 @@ Scenario: Register as new user
   Given I am on the register page
   When I enter all required fields
   And I click register button
-  Then I recieve account created message
+  Then I receive account created message

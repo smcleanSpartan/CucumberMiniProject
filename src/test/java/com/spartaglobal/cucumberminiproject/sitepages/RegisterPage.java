@@ -35,7 +35,8 @@ public class RegisterPage {
 
     public void setTitle(String title){
         if(title.equalsIgnoreCase("mr")){
-            driver.findElement(titleMr).click();
+            System.out.println("status");
+            //driver.findElement(titleMr).click();
         }else if(title.equalsIgnoreCase("mrs")){
             driver.findElement(titleMrs).click();
         }

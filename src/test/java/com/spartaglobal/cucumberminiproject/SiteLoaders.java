@@ -28,6 +28,7 @@ public class SiteLoaders {
         signInPage = new SignInPage(driver);
         authenticationPage = new AuthenticationPage(driver);
         dressesCategoryPage = new DressesCategoryPage(driver);
+        registerPage = new RegisterPage(driver);
     }
 
     public void tearDown(){
